@@ -1,20 +1,25 @@
-from typing import Any
+import inspect
+from typing import Any, Callable
 
 from workflow_kit import WorkflowKitError
 
 
 class ResultOf:
-    def __init__(self, name: str, n: int = 1) -> None:
+    def __init__(self, name_or_fn: str | Callable, n: int = 1) -> None:
         """
         Helper class for defining a required return value from a prior step.
 
         Example usage:
         `def step_2(result: Annotated[str, ResultOf('step_1')): ...`
 
-        :arg name: Name of function (prior step to retrieve).
+        :arg name_or_fn: Name of function (prior step to retrieve).
         :param n: Reverse index (default 0).
         """
-        self.name = name
+        # Resolves a function if provided instead of a name.
+        if inspect.isfunction(name_or_fn):
+            name_or_fn = name_or_fn.__name__
+
+        self.name = name_or_fn
         self.n = n
 
     def __call__(self, results: 'Results') -> Any:

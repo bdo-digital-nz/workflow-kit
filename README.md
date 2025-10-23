@@ -198,10 +198,14 @@ def commence_sharpening(pencil_type: str):
 
 
 @sharpen_pencils.step()
-def send_result(orchestration: Orchestration, message: Annotated[str, ResultOf('commence_sharpening')]):
+def send_result(orchestration: Orchestration, message: Annotated[str, ResultOf(commence_sharpening)]):
     orchestration.end({'message': message})
 
 ```
 
 The return value of a previous step can be injected into a step on demand by adding an annotation calling the `ResultOf` 
-class.
+class. The `name_or_fn` arg can either be a function name or a function itself.
+
+> [!TIP]
+> Prefer using the function itself on `ResultOf` over the name of the function. This provides a firm reference 
+> so that if the function is renamed you will be aware of it as a reference error would be raised.
