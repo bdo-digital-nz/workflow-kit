@@ -31,5 +31,5 @@ dev = [
 ]
 
 [project.url]
-Homepage = "https://github.com/lukeshortland/workflow-kit"
-Issues = "https://github.com/lukeshortland/workflow-kit/issues"
+Homepage = "https://github.com/bdo-digital-nz/workflow-kit"
+Issues = "https://github.com/bdo-digital-nz/workflow-kit/issues"
