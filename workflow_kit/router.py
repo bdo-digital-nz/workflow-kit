@@ -46,6 +46,12 @@ class Router:
                 if match is None or score < match[0]:
                     match = (score, e)
 
+        if not match:
+            raise workflow_kit.WorkflowKitError(
+                code='RouterError',
+                message='No matching schema found for the event.'
+            )
+
         raise match[1]
 
     def invoke(self, event: Any, context: Any = None, deps: Optional['workflow_kit.DependencyInjector'] = None):
