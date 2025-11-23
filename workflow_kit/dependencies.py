@@ -1,6 +1,5 @@
 __all__ = ['DependencyInjector']
 
-import copy
 import inspect
 from typing import Callable, Dict, Any, get_type_hints, List, Tuple, get_origin, Annotated, get_args
 
