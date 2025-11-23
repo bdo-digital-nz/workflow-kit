@@ -15,8 +15,8 @@ class DependencyInjector:
         :param types: Optional types dict to initialise with.
         :param names: Optional names dict to initialise with.
         """
-        self.types = copy.deepcopy(types) if types else {}
-        self.names = copy.deepcopy(names) if names else {}
+        self.types = types if types else {}
+        self.names = names if names else {}
         self.callbacks = {}
 
     def __call__(
